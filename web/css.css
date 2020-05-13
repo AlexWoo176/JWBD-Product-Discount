@@ -1,0 +1,14 @@
+body{
+    padding: 0;
+    margin: 0;
+    background: #5f95ed;
+}
+.content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: aqua;
+    padding: 20px;
+    border-radius: 20px;
+}
