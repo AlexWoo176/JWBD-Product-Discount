@@ -11,36 +11,31 @@ import java.io.PrintWriter;
 @WebServlet(name = "ProductDiscountCalculationServlet", urlPatterns = "/calculator")
 public class ProductDiscountCalculationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String description = request.getParameter("product description");
+        float price = Float.parseFloat(request.getParameter("price"));
+        float discountPercent = Float.parseFloat(request.getParameter("discount percent"));
+        float discountAmount = price * discountPercent / 100;
+        float discountPrice = price - discountAmount;
+
         PrintWriter writer = response.getWriter();
-        String des = request.getParameter("description");
-        float pri = Float.parseFloat(request.getParameter("price"));
-        float dis = Float.parseFloat(request.getParameter("discount_percent"));
-        float discountAmount = pri * dis * 0.01f;
-        float discountPrice = pri - discountAmount;
-
-        writer.println("<html>\n" +
-                "  <head>\n" +
-                "    <title>Calculator</title>\n" +
-                "    <link rel=\"stylesheet\" type=\"text/css\" href=\"css.css\" />\n" +
-                "  </head>\n" +
-                "  <body>\n" +
-                "  <div class=\"content\">\n" +
-                "    <h1>Calculator</h1>\n" +
-                "      <label>Product Description:</label><br/>\n" +
-                "      <label>" + des + "</label><br/>\n" +
-                "      <label>List Price:</label><br/>\n" +
-                "      <label>" + pri + "</label><br/>\n" +
-                "      <label>Discount Percent:</label><br/>\n" +
-                "      <label>" + dis + "</label><br/>\n" +
-                "      <label>Discount Amount:</label><br/>\n" +
-                "      <label>" + discountAmount + "</label><br/>\n" +
-                "      <label>Discount Price:</label><br/>\n" +
-                "      <label>" + discountPrice + "</label><br/>\n" +
-                "  </div>\n" +
-                "  </body>\n" +
-                "</html>");
+        writer.println("<html>");
+        writer.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/.css\">\n");
+        writer.println("<div id= 'Discount'>");
+        writer.println("<h1> Product Discount Calculator</h1>");
+        writer.println("<br>");
+        writer.println("Product Description: " + description);
+        writer.println("<br>");
+        writer.println("Price list:  $" + price);
+        writer.println("<br>");
+        writer.println("Discount percent:  %" + discountPercent);
+        writer.println("<br>");
+        writer.println("Discount Amount:  $" + discountAmount);
+        writer.println("<br>");
+        writer.println("Discount price:  $" + discountPrice);
+        writer.println("</div>");
+        writer.println("</html>");
     }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
